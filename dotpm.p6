@@ -196,11 +196,12 @@ sub showHelp {
 dotpm link PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION and replace it with a symlink; FILE will be symlinked from PACKAGE/SET/ACTION when installed
 dotpm copy PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION; FILE will be copied form PACKAGE/SET/ACTION when installed
 dotpm exec PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION; FILE will be executed inside PACKAGE/SET/ACTION when installed
+dotpm install PACKAGE SET   - performs all ACTIONS in PACKAGE/SET
 dotpm init PACKAGE          - creates an emtpy package
 dotpm commit PACKAGE COMMITMESSAGE - adds all new files to a package and commits all its changes; if COMMITMESSAGE is omitted, it will be randomly generated
 dotpm push PACKAGE          - pushs the changes of PACKAGE to its remote-repository
 dotpm list PACKAGE          - lists all sets of PACKAGE; if PACKAGE is omitted, all packages will be listed
-dotpm help                  - show this"
+dotpm help                  - show this (duh...)"
 }
 
 multi MAIN("link", Str $package, Str $set, Str $file) {
