@@ -10,6 +10,34 @@ This directory will be automatically created, if it doesent exist.
 | Sets | Packages persist out of sets.<br>Sets are normal directories. |
 | Actions | Packages persist out of sets.<br>An action is a directory, located inside a set.<br>It persists out of a configuration-file, called `action.dotpm` and a ´source-file´. |
 
+Example `~/DOTPM`:
+```
+~/DOTPM/
+  mydotfiles/
+    bash/
+      ioqba-bashrc/
+        action.dotpm
+        bashrc
+      oquup-profile/
+        action.dotpm
+        profile
+    nvim/
+      qribs-initvim
+        action.dotpm
+        initvim
+      install-vimplug
+        action.dotpm
+        install.sh
+  rickswallpapers/
+    anime/
+      ioqyy-sao1jpg/
+        action.dotpm
+        sao1jpg
+      iqqcv-deathnote233/
+        action.dotpm
+        deathnote233
+```
+
 #### action.dotpm
 Example  
 ```
