@@ -68,18 +68,33 @@ Defines the location, where your `source-file`, should be copied or linked to, w
 | dotpm copy `PACKAGE` `SET` `FILE` | Copy `FILE` into `PACKAGE`/`SET`. `FILE` will be copied, when installed. |
 | dotpm exec `PACKAGE` `SET` `FILE` | Copy `FILE` into `PACKAGE`/`SET`. `FILE` will be excuted, when installed. |
 
-## Installing a set
+### Installing a set
 | command | description |
 |--|--|
 | dotpm install `PACKAGE` `SET` | Perform all actions inside `PACKAGE`/`SET`. |
 
-## List all packages 
+### List all packages 
 | command | description |
 |--|--|
 | dotpm list | Lists all packages. |
 | dotpm list `PACKAGE` | Lists all sets of `PACKAGE`. |
 
-## Show help
+### Show help
 | command | description |
 |--|--|
 | dotpm help | show a usage-description, similar to this one. |
+
+## Installation
+1. Clone the Repository
+```
+git clone https://github.com/thosebeans/dotpm.git
+```
+2. Install it
+```
+sudo make install
+```
+or copy `dotpm.p6` into your `PATH`.
+
+### Dependecies
+- A working Perl6-Distribution, eg. [Rakudo](https://perl6.org/).
+- Git
