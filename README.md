@@ -44,6 +44,12 @@ Defines the location, where your `source-file`, should be copied or linked to, w
 |--|--|
 | dotpm init `PACKAGE` | Creates the package `PACKAGE`. |
 
+### Cloning a package
+| command | description |
+|--|--|
+| dotpm clone `LOCATION` | Clone the repository from `LOCATION`, into `~/DOTPM`, using its default name. |
+| dotpm clone `LOCATION` `PACKAGE` | Clone the repository from `LOCATION`, into `~/DOTPM`, using `PACKAGE` as its name. |
+
 ### Commiting all changes of a package
 | command | description |
 |--|--|
@@ -55,3 +61,19 @@ Defines the location, where your `source-file`, should be copied or linked to, w
 |--|--|
 | dotpm push `PACKAGE` | Pushs the changes of `PACKAGE`, to its default remote-repository. |
 
+### Adding actions
+| command | description |
+|--|--|
+| dotpm link `PACKAGE` `SET` `FILE` | Copy `FILE` into `PACKAGE`/`SET`. Replace file with a symlink, to its copy in `SET`. `FILE` will be symlinked, when installed. |
+| dotpm copy `PACKAGE` `SET` `FILE` | Copy `FILE` into `PACKAGE`/`SET`. `FILE` will be copied, when installed. |
+| dotpm exec `PACKAGE` `SET` `FILE` | Copy `FILE` into `PACKAGE`/`SET`. `FILE` will be excuted, when installed. |
+
+## Installing a set
+| command | description |
+|--|--|
+| dotpm install `PACKAGE` `SET` | Perform all actions inside `PACKAGE`/`SET`. |
+
+## List all packages 
+| command | description |
+|--|--|
+| dotpm
