@@ -76,4 +76,10 @@ Defines the location, where your `source-file`, should be copied or linked to, w
 ## List all packages 
 | command | description |
 |--|--|
-| dotpm
+| dotpm list | Lists all packages. |
+| dotpm list `PACKAGE` | Lists all sets of `PACKAGE`. |
+
+## Show help
+| command | description |
+|--|--|
+| dotpm help | show a usage-description, similar to this one. |
