@@ -230,6 +230,20 @@ multi MAIN("install", Str $package, Str $set) {
     $s.install;
 }
 
+multi MAIN("clone", Str $location) {
+    chdir $dotpmDir;
+    run "git", "clone", $location;
+}
+
+multi MAIN("clone", Str $location, Str $package) {
+    unless nameCheck($package) { die "invalid package" }
+    for @packages -> $i {
+        if $i ~~ $package { die "invalid package" }
+    }
+    chdir $dotpmDir;
+    run "git", "clone", $package;
+}
+
 multi MAIN("init", Str $package) {
     dotpmPackage.init($package)
 }
