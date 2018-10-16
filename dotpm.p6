@@ -166,10 +166,21 @@ class dotpmPackage {
         run "git", "push";
     }
 
-    method getSet(Str $set) {
+    method getNewSet(Str $set) {
         unless nameCheck($set) { die "invalid set" }
         unless (mkdir "{self.path}/{$set}").d { die "invalid set" }
         return dotpmSet.new(path => "{self.path}/{$set}".IO.absolute)
+    }
+
+    method getSet(Str $set) {
+        for self.sets -> $i {
+            if $i ~~ $set {
+                return dotpmSet.new(
+                    path => "{self.path}/{$set}"
+                )
+            }
+        }
+        die "invalid set"
     }
 }
 
@@ -194,20 +205,28 @@ dotpm help                  - show this"
 
 multi MAIN("link", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
-    my $s = $p.getSet($set);
+    my $s = $p.getNewSet($set);
     $s.mkAction("link", $file);
 }
 
 multi MAIN("copy", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
-    my $s = $p.getSet($set);
+    my $s = $p.getNewSet($set);
     $s.mkAction("copy", $file);
 }
 
 multi MAIN("exec", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
-    my $s = $p.getSet($set);
+    my $s = $p.getNewSet($set);
     $s.mkAction("exec", $file);
+}
+
+multi MAIN("install", Str $package, Str $set) {
+    my $p = dotpmPackage.get($package);
+    $p.getSets;
+    my $s = $p.getSet($set);
+    $s.getActions;
+    $s.install;
 }
 
 multi MAIN("init", Str $package) {
