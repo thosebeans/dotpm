@@ -37,3 +37,21 @@ Is the file, you imported into a set.
 
 ##### target
 Defines the location, where your `source-file`, should be copied or linked to, when installed.
+
+## Usage
+### Creating a new Package
+| command | description |
+|--|--|
+| dotpm init `PACKAGE` | Creates the package `PACKAGE`. |
+
+### Commiting all changes of a package
+| command | description |
+|--|--|
+| dotpm commit `PACKAGE` | Commits all changes of `PACKAGE`. The commit-message will be randomly generated |
+| dotpm commit `PACKAGE` `COMMIT-MESSAGE` | Commits all changes of `PACKAGE`. `COMMIT-MESSAGE` will be used as commit-message. |
+
+### Pushing a package, to its remote-repository 
+| command | description |
+|--|--|
+| dotpm push `PACKAGE` | Pushs the changes of `PACKAGE`, to its default remote-repository. |
+
