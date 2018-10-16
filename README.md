@@ -21,3 +21,19 @@ action=link
 source=bashrc
 target=#HOME#/.bashrc
 ```
+##### action
+Defines which type of action to execute.
+Possible types are **link**, **copy**, **exec**.  
+
+| type | description |
+|------|-------------|
+| link | symlinks the `source-file` to its target-location, when installed |
+| copy | copies the `source-file` to its target-location, when installed |
+| exec | executes the `source-file`, **inside**, its action-directory |
+
+##### source
+Defines the name of the `source-file`, inside of the action-directory.
+Is the file, you imported into a set.
+
+##### target
+Defines the location, where your `source-file`, should be copied or linked to, when installed.
