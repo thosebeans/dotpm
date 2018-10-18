@@ -250,6 +250,12 @@ multi MAIN("push", Str $package) {
     $p.push;
 }
 
+#| pulls the changes of <package> from its remote-repository
+multi MAIN("pull", Str $package) {
+    my $p = dotpmPackage.get($package);
+    $p.pull;
+}
+
 #| lists all packages
 multi MAIN("list") {
     listPackages;
