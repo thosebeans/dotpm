@@ -191,37 +191,28 @@ sub listPackages {
     }
 }
 
-sub showHelp {
-    say "dotpm - help
-dotpm link PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION and replace it with a symlink; FILE will be symlinked from PACKAGE/SET/ACTION when installed
-dotpm copy PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION; FILE will be copied form PACKAGE/SET/ACTION when installed
-dotpm exec PACKAGE SET FILE - add FILE to PACKAGE/SET/ACTION; FILE will be executed inside PACKAGE/SET/ACTION when installed
-dotpm install PACKAGE SET   - performs all ACTIONS in PACKAGE/SET
-dotpm init PACKAGE          - creates an emtpy package
-dotpm commit PACKAGE COMMITMESSAGE - adds all new files to a package and commits all its changes; if COMMITMESSAGE is omitted, it will be randomly generated
-dotpm push PACKAGE          - pushs the changes of PACKAGE to its remote-repository
-dotpm list PACKAGE          - lists all sets of PACKAGE; if PACKAGE is omitted, all packages will be listed
-dotpm help                  - show this (duh...)"
-}
-
+#| add <file> to <package>/<set>/ACTION and replace it with a symlink; <file> will be symlinked from <package>/<set>/ACTION when installed
 multi MAIN("link", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
     my $s = $p.getNewSet($set);
     $s.mkAction("link", $file);
 }
 
+#| add <file> to <package>/<set>/ACTION; FILE will be copied form <package>/<set>/ACTION when installed
 multi MAIN("copy", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
     my $s = $p.getNewSet($set);
     $s.mkAction("copy", $file);
 }
 
+#| add <file> to <package>/<set>/ACTION; FILE will be executed inside <package>/<set>/ACTION when installed
 multi MAIN("exec", Str $package, Str $set, Str $file) {
     my $p = dotpmPackage.get($package);
     my $s = $p.getNewSet($set);
     $s.mkAction("exec", $file);
 }
 
+#| performs all ACTIONS in <package>/<set>
 multi MAIN("install", Str $package, Str $set) {
     my $p = dotpmPackage.get($package);
     $p.getSets;
@@ -230,11 +221,13 @@ multi MAIN("install", Str $package, Str $set) {
     $s.install;
 }
 
+#| clones the git-repository from <location> into ~/DOTPM, using its default name
 multi MAIN("clone", Str $location) {
     chdir $dotpmDir;
     run "git", "clone", $location;
 }
 
+#| clones the git-repository from <location> into ~/DOTPM, using <package> as its name
 multi MAIN("clone", Str $location, Str $package) {
     unless nameCheck($package) { die "invalid package" }
     for @packages -> $i {
@@ -244,24 +237,29 @@ multi MAIN("clone", Str $location, Str $package) {
     run "git", "clone", $package;
 }
 
+#| creates an emtpy package <package> inside ~/DOTPM
 multi MAIN("init", Str $package) {
     dotpmPackage.init($package)
 }
 
+#| adds all new files to <package> and commits all changes, if <commitMessage> is omitted, it will be randomly generated
 multi MAIN("commit", Str $package, Str $commitMessage="$(getRandomString)") {
     my $p = dotpmPackage.get($package);
     $p.commit($commitMessage);
 }
 
+#| pushs <package> to its remote-repository
 multi MAIN("push", Str $package) {
     my $p = dotpmPackage.get($package);
     $p.push;
 }
 
+#| lists all packages
 multi MAIN("list") {
     listPackages;
 }
 
+#| lists all sets of <package>
 multi MAIN("list", Str $package) {
     my $p = dotpmPackage.get($package);
     $p.getSets;
@@ -269,8 +267,4 @@ multi MAIN("list", Str $package) {
     for $p.sets -> $i {
         say "    {$i}"
     }
-}
-
-multi MAIN("help") {
-    showHelp;
 }
