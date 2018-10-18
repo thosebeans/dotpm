@@ -43,23 +43,14 @@ class dotpmAction {
     method install {
         chdir self.path;
         if (self.action ~~ "link") || (self.action ~~ "copy") {
-            mkdir self.target.IO.dirname
+            mkdir self.target.IO.dirname;
+            run "rm", "-rf", self.target;
         }
         given self.action {
             when "link" {
-                if self.target.IO.d {
-                    self.target.IO.rmdir
-                } elsif self.target.IO.e {
-                    self.target.IO.unlink
-                }
                 self.source.IO.symlink(self.target);
             }
             when "copy" {
-                if self.target.IO.d {
-                    self.target.IO.rmdir
-                } elsif self.target.e {
-                    self.target.IO.unlink
-                }
                 copy self.source, self.target
             }
             when "exec" {
