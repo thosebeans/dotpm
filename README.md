@@ -77,6 +77,11 @@ target=#HOME#/.bashrc
 |--|--|
 | dotpm push `PACKAGE` | Pushs the changes of `PACKAGE`, to its default remote-repository. |
 
+### Pulling changes of a package
+| command | description |
+|--|--|
+| dotpm pull `PACKAGE` | Pulls the changes of `PACKAGE` from its remote-repository. |
+
 ### Adding actions
 | command | description |
 |--|--|
