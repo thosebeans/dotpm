@@ -96,9 +96,7 @@ target=#HOME#/.bashrc
 | dotpm list `PACKAGE` | Lists all sets of `PACKAGE`. |
 
 ### Show help
-| command | description |
-|--|--|
-| dotpm help | show a usage-description, similar to this one. |
+All inputs, that dont match one of the above commands, will show the help-message.
 
 ## Installation
 1. Clone the Repository
