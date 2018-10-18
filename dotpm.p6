@@ -163,6 +163,11 @@ class dotpmPackage {
         return dotpmSet.new(path => "{self.path}/{$set}".IO.absolute)
     }
 
+    method pull {
+        chdir self.path;
+        run "git", "pull";
+    }
+
     method getSet(Str $set) {
         for self.sets -> $i {
             if $i ~~ $set {
