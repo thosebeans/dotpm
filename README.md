@@ -1,5 +1,21 @@
 # DOTPM - a dotfile- and configurations-package-manager, written in Perl6
 dotpm is a highly configurable package-manager, to keep track of your dotfiles and automate the configurations of your systems.
+
+## Installation
+1. Clone the Repository
+```
+git clone https://github.com/thosebeans/dotpm.git
+```
+2. Install it
+```
+sudo make install
+```
+or copy `dotpm.p6` into your `PATH`.
+
+### Dependecies
+- A working Perl6-Distribution, eg. [Rakudo](https://perl6.org/).
+- Git
+
 ## How it works
 All file of `dotpm` are located inside `~/DOTPM`.  
 This directory will be automatically created, if it doesent exist.
@@ -102,18 +118,3 @@ target=#HOME#/.bashrc
 
 ### Show help
 All inputs, that dont match one of the above commands, will show the help-message.
-
-## Installation
-1. Clone the Repository
-```
-git clone https://github.com/thosebeans/dotpm.git
-```
-2. Install it
-```
-sudo make install
-```
-or copy `dotpm.p6` into your `PATH`.
-
-### Dependecies
-- A working Perl6-Distribution, eg. [Rakudo](https://perl6.org/).
-- Git
