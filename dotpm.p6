@@ -42,9 +42,11 @@ class dotpmAction {
 
     method install {
         chdir self.path;
+        if ! self.source.IO.f { die "source-file doesnt exist" }
         if (self.action ~~ "link") || (self.action ~~ "copy") {
             mkdir self.target.IO.dirname;
             run "rm", "-rf", self.target;
+            if self.target ~~ "" { die "target is empty" };
         }
         given self.action {
             when "link" {
@@ -55,6 +57,9 @@ class dotpmAction {
             }
             when "exec" {
                 run "./{self.source}"
+            }
+            default {
+                die "invalid action \"{self.action}\""
             }
         }
     }
