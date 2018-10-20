@@ -94,11 +94,17 @@ class dotpmSet {
     method install {
         for self.actions -> $i {
             my Str $configFile = slurp "{self.path}/{$i}/action.dotpm";
+            my $action = $configFile ~~ / [^^"action="] ("link"|"copy"|"exec") /;
+            my $source = $configFile ~~ / [^^"source="] (\N+) /;
+            my $target = $configFile ~~ / [^^"target="] (\N+) /;
+            unless $action { die "action-tag not found" }
+            unless $source { die "source-tag not found" }
+            unless $target { die "target-tag not found" }
             my $a = dotpmAction.new(
                 path => "{self.path}/{$i}",
-                action => ($configFile ~~ / [^^"action="] ("link"|"copy"|"exec") /)[0].Str,
-                source => ($configFile ~~ / [^^"source="] (\N+) /)[0].Str,
-                target => (($configFile ~~ / [^^"target="] (\N+) /)[0].Str).subst("#HOME#", %*ENV<HOME>),
+                action => $action[0].Str,
+                source => $source[0].Str,
+                target => ($target[0].Str).subst("#HOME#", %*ENV<HOME>),
             );
             $a.install;
         }
